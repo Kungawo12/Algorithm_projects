@@ -29,8 +29,14 @@ public class DelivA {
 			System.err.format("Exception: %s%n", x);
 			System.exit(0);
 		}
-		System.out.println( "DelivA:  To be implemented");
-		output.println( "DelivA:  To be implemented");
+		System.out.println("The graph has some nodes in it");
+		System.out.println("Number of nodes: "+ g.getNodeList().size());
+
+		Node firstNode = g.getNodeList().get(0);
+		System.out.println("First node name: " + firstNode.getName());
+	System.out.println("First node abbreviation: " + firstNode.getAbbrev());
+	System.out.println("First node value: " + firstNode.getVal());
+
 		output.flush();
 	}
 
