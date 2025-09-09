@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 // Class DelivA does the work for deliverable DelivA of the Prog340
 
@@ -32,10 +33,11 @@ public class DelivA {
 		System.out.println("The graph has some nodes in it");
 		System.out.println("Number of nodes: "+ g.getNodeList().size());
 
-		Node firstNode = g.getNodeList().get(0);
-		System.out.println("First node name: " + firstNode.getName());
-	System.out.println("First node abbreviation: " + firstNode.getAbbrev());
-	System.out.println("First node value: " + firstNode.getVal());
+		ArrayList<Node> allNodes = g.getNodeList();
+		for(Node node: allNodes){
+			System.out.println("name " +node.getName() + "  Abbrev "+ node.getAbbrev() + "  Value "+ node.getVal());
+		}
+		
 
 		output.flush();
 	}
