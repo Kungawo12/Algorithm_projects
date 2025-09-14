@@ -33,17 +33,19 @@ public class DelivA {
 			System.err.format("Exception: %s%n", x);
 			System.exit(0);
 		}
-		System.out.println("The graph has some nodes in it");
-		System.out.println("Number of nodes: "+ g.getNodeList().size());
-
+		
+	// Get all nodes from the graph and display their information
 		ArrayList<Node> allNodes = g.getNodeList();
 		for(Node node: allNodes){
 			System.out.println("name: "+ node.getName() + " abbrv: "+ node.getAbbrev() + " value: "+ node.getVal());
 		}
 
+// Sort nodes by their values in ascending order (1, 2, 3, ...)
+// Use Collections.sort with custom Comparator for Node objects
 		Collections.sort(allNodes, new Comparator<Node>(){
 			@Override
 			public int compare(Node node1, Node node2){
+				// Convert string values to integers for proper numeric comparison
 				int valueInt1 = Integer.parseInt(node1.getVal());
 				int valueInt2 = Integer.parseInt(node2.getVal());
 
@@ -51,16 +53,55 @@ public class DelivA {
 			}
 		});
 
+		// Initialize path builder and total distance counter
 		StringBuilder pathBuilder = new StringBuilder("Path ");
-
+		int totalDistance = 0;
+		
+		// Build the Hamiltonian cycle path and calculate total distance
 		for (int i = 0; i < allNodes.size(); i++) {
-			pathBuilder.append(allNodes.get(i).getAbbrev());
+			Node currentNode = allNodes.get(i);
+			// Add current node abbreviation to the path
+			pathBuilder.append(currentNode.getAbbrev());
 			pathBuilder.append(" ");
+
+			// Determine the next node in the cycle
+			Node nextNode;
+			if(i == allNodes.size()-1){
+				nextNode = allNodes.get(0);  // Return to starting node (complete the cycle)
+			}
+			else{
+				nextNode = allNodes.get(i +1); // Move to next node in sequence
+			}
+			// Calculate distance between current and next node, add to total
+			int distance = findDistanceBetweenNodes(currentNode,nextNode);
+			totalDistance += distance;
 		}
-		System.out.println(pathBuilder);
+	// Complete the path string with return node and total distance, printing it .
+		pathBuilder.append(allNodes.get(0).getAbbrev());
+		System.out.println("Path " + pathBuilder+ " has distance "+totalDistance+ ".");
+		
+
 		
 
 		output.flush();
 	}
 
+	/**
+	 * Finds the distance between two nodes by searching through outgoing edges
+	 * @param currentNode The starting node
+	 * @param nextNode The destination node
+	 * @return The distance between the two nodes, or 0 if no edge found
+	 */
+	private int findDistanceBetweenNodes(Node currentNode,Node nextNode){
+	ArrayList<Edge> outgoinEdges = currentNode.getOutgoingEdges();
+	
+	for (Edge edge : outgoinEdges){
+		if(edge.getHead().equals(nextNode)){
+			return edge.getDist();
+		}
+
+		
+	}
+	return 0;
+	}
 }
