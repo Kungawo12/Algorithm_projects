@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 // Class DelivA does the work for deliverable DelivA of the Prog340
 
@@ -35,8 +38,26 @@ public class DelivA {
 
 		ArrayList<Node> allNodes = g.getNodeList();
 		for(Node node: allNodes){
-			System.out.println("name " +node.getName() + "  Abbrev "+ node.getAbbrev() + "  Value "+ node.getVal());
+			System.out.println("name: "+ node.getName() + " abbrv: "+ node.getAbbrev() + " value: "+ node.getVal());
 		}
+
+		Collections.sort(allNodes, new Comparator<Node>(){
+			@Override
+			public int compare(Node node1, Node node2){
+				int valueInt1 = Integer.parseInt(node1.getVal());
+				int valueInt2 = Integer.parseInt(node2.getVal());
+
+				return Integer.compare(valueInt1, valueInt2);
+			}
+		});
+
+		StringBuilder pathBuilder = new StringBuilder("Path ");
+
+		for (int i = 0; i < allNodes.size(); i++) {
+			pathBuilder.append(allNodes.get(i).getAbbrev());
+			pathBuilder.append(" ");
+		}
+		System.out.println(pathBuilder);
 		
 
 		output.flush();
