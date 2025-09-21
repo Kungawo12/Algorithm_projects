@@ -34,11 +34,8 @@ public class DelivA {
 			System.exit(0);
 		}
 		
-	// Get all nodes from the graph and display their information
+	// Get all nodes from the graph 
 		ArrayList<Node> allNodes = g.getNodeList();
-		for(Node node: allNodes){
-			System.out.println("name: "+ node.getName() + " abbrv: "+ node.getAbbrev() + " value: "+ node.getVal());
-		}
 
 // Sort nodes by their values in ascending order (1, 2, 3, ...)
 // Use Collections.sort with custom Comparator for Node objects

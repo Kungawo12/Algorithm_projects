@@ -1,0 +1,7 @@
+~                   val   ARR   LL   BST   HEA   HAS   GRP
+Array                4      ~    8     50    50    50    50
+LinkedList           5      50   ~     50    50    50    10
+BinarySearchTree     1      50   50    ~     50    2     50
+Heap                 3      6    50    50     ~    50    50
+HashTable            2      50   50    50     4    ~     50
+Graph                6      50   50    12     50   50    ~

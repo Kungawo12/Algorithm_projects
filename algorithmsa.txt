@@ -1,0 +1,8 @@
+~                   val BFS DFS DIJ BEL PRI KRU DP
+BreadthFirstSearch   1  ~   1   100 100 100 100 100
+DepthFirstSearch     2  100  ~  2   100 100 100 100
+Dijkstra             3  100 100 ~   3   100 100 100
+BellmanFord          4  100 100 100 ~   4   100 100
+Prim                 5  100 100 100 100 ~   5   100
+Kruskal              6  100 100 100 100 100 ~   6
+DynamicProgramming   7  7   100 100 100 100 100 ~
